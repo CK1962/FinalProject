@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace FosterCareAPI2.Core.Models
+﻿namespace FosterCareAPI2.Core.Models
 {
     public class HouseModel
     {
@@ -10,5 +7,7 @@ namespace FosterCareAPI2.Core.Models
         public string Name { get; set; }
 
         public string City { get; set; }
+
+        public string Children { get; set; }
     }
 }

@@ -1,11 +1,9 @@
-﻿using System;
+﻿using FosterCareAPI2.ApiModels;
 using FosterCareAPI2.Core.Models;
 using FosterCareAPI2.Core.Services;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using FosterCareAPI2.ApiModels;
+using System;
+using System.Linq;
 
 namespace FosterCareAPI2.Controllers
 {
@@ -61,7 +59,7 @@ namespace FosterCareAPI2.Controllers
         {
             try
             {
-               var child = childModel.ToDomainModel();
+                var child = childModel.ToDomainModel();
                 _childService.Add(child);
                 var newChildModel = child.ToApiModel();
                 return Ok(newChildModel);

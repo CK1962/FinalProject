@@ -1,8 +1,6 @@
-﻿using System;
-using FosterCareAPI2.Core.Models;
+﻿using FosterCareAPI2.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
-using FosterCareAPI2.ApiModels;
 
 namespace FosterCareAPI2.ApiModels
 {
@@ -16,7 +14,8 @@ namespace FosterCareAPI2.ApiModels
                 Name = child.Name,
                 Dob = child.Dob,
                 MoveInDate = child.MoveInDate,
-                ChildHomes = child.ChildHomes
+                HouseId = child.House.Id,
+                HouseName = child.House.Name
             };
         }
 
@@ -27,7 +26,8 @@ namespace FosterCareAPI2.ApiModels
                 Id = childModel.Id,
                 Name = childModel.Name,
                 Dob = childModel.Dob,
-                MoveInDate = childModel.MoveInDate
+                MoveInDate = childModel.MoveInDate,
+                HouseId = childModel.HouseId
             };
         }
 

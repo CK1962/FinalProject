@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using FosterCareAPI2.Core.Models;
+﻿using FosterCareAPI2.Core.Models;
 
 namespace FosterCareAPI2.ApiModels
 {
@@ -14,6 +12,7 @@ namespace FosterCareAPI2.ApiModels
 
         public string MoveInDate { get; set; }
 
-        public IEnumerable<ChildHome> ChildHomes { get; set; }
+        public int HouseId { get; set; }
+        public string HouseName { get; set; }
     }
 }

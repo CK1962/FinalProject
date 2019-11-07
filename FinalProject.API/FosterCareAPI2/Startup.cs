@@ -1,30 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using FosterCareAPI2.Core.Services;
+using FosterCareAPI2.Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FosterCareAPI2.Core.Services;
-using FosterCareAPI2.Infrastructure.Data;
-using FosterCareAPI2.Core.Models;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.EntityFrameworkCore;
-
 
 namespace FosterCareAPI2
 {
     public class Startup
     {
-        
-            public Startup(IConfiguration configuration)
-            {
-                Configuration = configuration;
-            }
-        
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
         public IConfiguration Configuration { get; }
 
@@ -40,7 +29,6 @@ namespace FosterCareAPI2
 
             services.AddHttpContextAccessor();
 
-
             services.AddDbContext<FosterAPIDbContext>();
 
             services.AddScoped<IChildService, ChildService>();
@@ -48,7 +36,7 @@ namespace FosterCareAPI2
 
             services.AddScoped<IHouseService, HouseService>();
             services.AddScoped<IHouseRepository, HouseRepository>();
-            
+
 
             //services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             // services.AddScoped<IAppointmentService, AppointmentService>();

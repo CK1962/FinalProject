@@ -1,7 +1,5 @@
-﻿using System;
-using FosterCareAPI2.Core.Models;
+﻿using FosterCareAPI2.Core.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace FosterCareAPI2.Core.Services
 {
@@ -9,18 +7,15 @@ namespace FosterCareAPI2.Core.Services
     {
         private readonly IHouseRepository _houseRepository;
         private readonly IChildRepository _childRepository;
-        //private readonly IAppointmentRepository _appointmentRepository;
 
-        // TODO: inject IHouseRepository
         public HouseService(IHouseRepository houseRepository, IChildRepository childRepository)
         {
             _houseRepository = houseRepository;
             _childRepository = childRepository;
-           // _appointmentRepository = appointmentRepository;
         }
         public House Add(House newHouse)
         {
-           return _houseRepository.Add(newHouse);
+            return _houseRepository.Add(newHouse);
         }
 
         public House Get(int id)

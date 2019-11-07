@@ -22,11 +22,15 @@ namespace FosterCareAPI2.Infrastructure2.Migrations
 
                     b.Property<string>("Dob");
 
+                    b.Property<int>("HouseId");
+
                     b.Property<string>("MoveInDate");
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("HouseId");
 
                     b.ToTable("Children");
 
@@ -35,6 +39,7 @@ namespace FosterCareAPI2.Infrastructure2.Migrations
                         {
                             Id = 1,
                             Dob = "01/01/01",
+                            HouseId = 1,
                             MoveInDate = "08/08/08",
                             Name = "Ashton"
                         },
@@ -42,6 +47,7 @@ namespace FosterCareAPI2.Infrastructure2.Migrations
                         {
                             Id = 2,
                             Dob = "01/01/96",
+                            HouseId = 1,
                             MoveInDate = "09/09/09",
                             Name = "Dylan"
                         },
@@ -49,6 +55,7 @@ namespace FosterCareAPI2.Infrastructure2.Migrations
                         {
                             Id = 3,
                             Dob = "01/01/05",
+                            HouseId = 1,
                             MoveInDate = "02/02/12",
                             Name = "Lilly"
                         },
@@ -56,22 +63,10 @@ namespace FosterCareAPI2.Infrastructure2.Migrations
                         {
                             Id = 4,
                             Dob = "01/01/12",
+                            HouseId = 1,
                             MoveInDate = "03/03/13",
                             Name = "Mariah"
                         });
-                });
-
-            modelBuilder.Entity("FosterCareAPI2.Core.Models.ChildHome", b =>
-                {
-                    b.Property<int>("ChildId");
-
-                    b.Property<int>("HouseId");
-
-                    b.HasKey("ChildId", "HouseId");
-
-                    b.HasIndex("HouseId");
-
-                    b.ToTable("ChildHomes");
                 });
 
             modelBuilder.Entity("FosterCareAPI2.Core.Models.House", b =>
@@ -96,15 +91,10 @@ namespace FosterCareAPI2.Infrastructure2.Migrations
                         });
                 });
 
-            modelBuilder.Entity("FosterCareAPI2.Core.Models.ChildHome", b =>
+            modelBuilder.Entity("FosterCareAPI2.Core.Models.Child", b =>
                 {
-                    b.HasOne("FosterCareAPI2.Core.Models.Child", "Child")
-                        .WithMany("ChildHomes")
-                        .HasForeignKey("ChildId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("FosterCareAPI2.Core.Models.House", "House")
-                        .WithMany("ChildHomes")
+                        .WithMany("Children")
                         .HasForeignKey("HouseId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\FosterCareAPI2.Core\FosterCareAPI2.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

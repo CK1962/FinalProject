@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FosterCareAPI2.Core.Models
 {
@@ -11,9 +10,6 @@ namespace FosterCareAPI2.Core.Models
 
         public string City { get; set; }
 
-        public ICollection<ChildHome> ChildHomes { get; set; }
-
-        //public ICollection<Appointment> Appts { get; set; }
-
+        public ICollection<Child> Children { get; set; }
     }
 }

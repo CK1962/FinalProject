@@ -15,20 +15,17 @@ namespace FosterCareAPI2.Infrastructure.Data
             _dbContext = dbContext;
         }
 
-
         public IEnumerable<House> GetAll()
         {
             return _dbContext.Home
-            .Include(c => c.ChildHomes)
-        //  .Include(c => c.Appointments)
+            .Include(c => c.Children)
             .ToList();
         }
 
         public House Get(int id)
         {
             return _dbContext.Home
-            .Include(c => c.ChildHomes)
-        //  .Include(c => c.Appointments)
+            .Include(c => c.Children)
             .SingleOrDefault(c => c.Id == id);
         }
 
@@ -56,7 +53,6 @@ namespace FosterCareAPI2.Infrastructure.Data
         {
             var houseToDelete = Get(id);
 
-            // TODO: remove blog
             _dbContext.Home.Remove(houseToDelete);
             _dbContext.SaveChanges();
         }
@@ -65,8 +61,7 @@ namespace FosterCareAPI2.Infrastructure.Data
         {
             var GetChildHome = Get(childId);
             return _dbContext.Home
-           .Include(c => c.ChildHomes)
-           //  .Include(c => c.Appointments)
+           .Include(c => c.Children)
            .ToList();
         }
     }

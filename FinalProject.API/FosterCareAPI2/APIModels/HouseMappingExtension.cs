@@ -1,8 +1,6 @@
-﻿using System;
-using FosterCareAPI2.Core.Models;
+﻿using FosterCareAPI2.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
-using FosterCareAPI2.ApiModels;
 
 namespace FosterCareAPI2.ApiModels
 {
@@ -15,6 +13,7 @@ namespace FosterCareAPI2.ApiModels
                 Id = house.Id,
                 Name = house.Name,
                 City = house.City,
+                Children = string.Join("; ", house.Children.Select(x => x.Name))
             };
         }
 

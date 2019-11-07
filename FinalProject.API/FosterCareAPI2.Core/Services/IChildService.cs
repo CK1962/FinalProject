@@ -1,6 +1,5 @@
-﻿using System;
+﻿using FosterCareAPI2.Core.Models;
 using System.Collections.Generic;
-using FosterCareAPI2.Core.Models;
 
 namespace FosterCareAPI2.Core.Services
 {
