@@ -7,10 +7,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 const routes: Routes = [
-  {path:"", component: HomeComponent},
-  {path:"login", component: LoginComponent},
-  {path:"register", component: RegisterComponent},
-  {path:"userProfile", component: UserProfileComponent},
+  { path: "", component: HomeComponent },
+  { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent },
+  { path: "userProfile", component: UserProfileComponent },
 ];
 
 @NgModule({

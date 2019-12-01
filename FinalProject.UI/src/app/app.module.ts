@@ -11,7 +11,7 @@ import { AuthService } from './services/auth.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { HouseholdComponent } from './household/household.component';
 import { ChildrenComponent } from './children/children.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [

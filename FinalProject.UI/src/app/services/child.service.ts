@@ -5,7 +5,7 @@ import { IChild } from '../interfaces/ichild';
   providedIn: 'root'
 })
 export class ChildService {
-childList: IChild[] = [];
+  childList: IChild[] = [];
   constructor() {
     const child1: IChild = {
       id: 1,
@@ -18,7 +18,7 @@ childList: IChild[] = [];
     this.add(child1);
   }
 
-   delete(childId: number) {
+  delete(childId: number) {
     const index = this.childList.findIndex(childItem => childItem.id === childId);
     this.childList.splice(index, 1);
   }
