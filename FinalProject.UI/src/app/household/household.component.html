@@ -1,0 +1,35 @@
+<h1>Houses</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">City</th>
+      <th scope="col">Children</th>
+      <th scope="col">
+        <button type="button" class="btn btn-primary" (click)="addHouse()">Add</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let house of houseList">
+      <td>
+        <label *ngIf="isEditingHouseId !== house.id">{{ house.name }}</label>
+        <input *ngIf="isEditingHouseId === house.id" type="text" class="form-control" [(ngModel)]="house.name">
+      </td>
+      <td>
+        <label *ngIf="isEditingHouseId !== house.id">{{ house.city }}</label>
+        <input *ngIf="isEditingHouseId === house.id" type="text" class="form-control" [(ngModel)]="house.city">
+      </td>
+      <td>{{house.children}}</td>
+      <td>
+        <div *ngIf="isEditingHouseId !== house.id">
+          <button type="button" class="btn btn-primary" (click)="editHouse(house.id)">Edit</button>
+          <button type="button" class="btn btn-primary" (click)="deleteHouse(house.id)">Delete</button>
+        </div>
+        <div *ngIf="isEditingHouseId === house.id">
+          <button type="button" class="btn btn-primary" (click)="saveEditHouse()">Done</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

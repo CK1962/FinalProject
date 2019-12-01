@@ -1,0 +1,44 @@
+<h1>Children</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Birthdate</th>
+      <th scope="col">Move In Date</th>
+      <th scope="col">Home</th>
+      <th scope="col">
+        <button type="button" class="btn btn-primary" (click)="addChild()">Add</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let child of childList">
+      <td>
+        <label *ngIf="isEditingChildId !== child.id">{{ child.name }}</label>
+        <input *ngIf="isEditingChildId === child.id" type="text" class="form-control" [(ngModel)]="child.name">
+      </td>
+      <td>
+        <label *ngIf="isEditingChildId !== child.id">{{ child.dob }}</label>
+        <input *ngIf="isEditingChildId === child.id" type="date" class="form-control" [(ngModel)]="child.dob">
+      </td>
+      <td>
+        <label *ngIf="isEditingChildId !== child.id">{{ child.moveInDate }}</label>
+        <input *ngIf="isEditingChildId === child.id" type="date" class="form-control" [(ngModel)]="child.moveInDate">
+      </td>
+      <td>
+        <label *ngIf="isEditingChildId !== child.id">{{ child.house }}</label>
+        <select *ngIf="isEditingChildId === child.id" class="form-control" [(ngModel)]="child.house">
+          <option [value]="houseName" *ngFor="let houseName of houseList">{{ houseName }}</option>
+        </select>
+      <td>
+        <div *ngIf="isEditingChildId !== child.id">
+          <button type="button" class="btn btn-primary" (click)="editChild(child.id)">Edit</button>
+          <button type="button" class="btn btn-primary" (click)="deleteChild(child.id)">Delete</button>
+        </div>
+        <div *ngIf="isEditingChildId === child.id">
+          <button type="button" class="btn btn-primary" (click)="saveEditChild()">Done</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
