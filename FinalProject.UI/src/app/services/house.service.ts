@@ -1,35 +1,56 @@
 import { Injectable } from '@angular/core';
 import { IHouse } from '../interfaces/ihouse';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HouseService {
   houseList: IHouse[] = [];
-  constructor() {
-    const house1: IHouse = {
-      id: 1,
-      name: 'Keslin',
-      city: 'Lubbock',
-      children: 'Allyson; Matthew'
-    };
-    this.add(house1);
+
+  constructor(private http: HttpClient) {
+    this.load();
+  }
+
+  private isLoaded: boolean = false;
+  async load() {
+    const url: string = "https://localhost:44331/api/House";
+    this.http.get<IHouse[]>(url).subscribe(data => {
+      this.houseList = data as IHouse[];
+      this.isLoaded = true;
+    });
   }
 
   delete(houseId: number) {
-    const index = this.houseList.findIndex(houseItem => houseItem.id === houseId);
-    this.houseList.splice(index, 1);
+    // delete API
+    const url: string = "https://localhost:44331/api/House/" + houseId;
+    this.http.delete<IHouse[]>(url).subscribe(data => {
+      this.load();
+    });
   }
 
   getAll(): IHouse[] {
+    if (!this.isLoaded) {
+      this.load();
+    }
     return this.houseList;
   }
 
   add(house: IHouse) {
-    this.houseList.push(house);
+    // add API
+    const url: string = "https://localhost:44331/api/House/";
+    this.http.post<IHouse[]>(url, house).subscribe(data => {
+      this.load();
+    });
   }
 
-  update(house: IHouse): void {
-    var foundItem = this.houseList.find(x => x.id === house.id);
+  update(houseId: number): void {
+    const house = this.houseList.find(x => x.id === houseId);
+
+    // update API
+    const url: string = "https://localhost:44331/api/House/" + house.id;
+    this.http.put<IHouse[]>(url, house).subscribe(data => {
+      this.load();
+    });
   }
 }

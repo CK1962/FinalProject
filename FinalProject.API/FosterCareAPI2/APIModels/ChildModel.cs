@@ -12,7 +12,7 @@ namespace FosterCareAPI2.ApiModels
 
         public string MoveInDate { get; set; }
 
-        public int HouseId { get; set; }
+        public int? HouseId { get; set; }
         public string HouseName { get; set; }
     }
 }

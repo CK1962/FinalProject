@@ -4,4 +4,8 @@
 
 <div class="container">
   <router-outlet></router-outlet>
+
+  <h2 style="margin-top: 100px;">Current Weather</h2>
+  <div>{{ weatherData }}</div>
+  <img [(src)]="weatherImageUrl" />
 </div>

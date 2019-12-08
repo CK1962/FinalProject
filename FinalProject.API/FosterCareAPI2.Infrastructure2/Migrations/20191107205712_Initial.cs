@@ -29,7 +29,7 @@ namespace FosterCareAPI2.Infrastructure2.Migrations
                     Name = table.Column<string>(nullable: true),
                     Dob = table.Column<string>(nullable: true),
                     MoveInDate = table.Column<string>(nullable: true),
-                    HouseId = table.Column<int>(nullable: false)
+                    HouseId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

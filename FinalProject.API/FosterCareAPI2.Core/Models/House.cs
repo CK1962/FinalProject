@@ -10,6 +10,6 @@ namespace FosterCareAPI2.Core.Models
 
         public string City { get; set; }
 
-        public ICollection<Child> Children { get; set; }
+        public ICollection<Child> Children { get; set; } = new List<Child>();
     }
 }

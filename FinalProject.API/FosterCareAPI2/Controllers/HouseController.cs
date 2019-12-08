@@ -1,15 +1,12 @@
-﻿using System;
+﻿using FosterCareAPI2.ApiModels;
 using FosterCareAPI2.Core.Models;
 using FosterCareAPI2.Core.Services;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using FosterCareAPI2.ApiModels;
+using System;
+using System.Linq;
 
 namespace FosterCareAPI2.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class HouseController : ControllerBase
@@ -20,6 +17,7 @@ namespace FosterCareAPI2.Controllers
         {
             _houseService = houseService;
         }
+
         // GET api/House
         [HttpGet]
         public IActionResult Get()
@@ -62,8 +60,8 @@ namespace FosterCareAPI2.Controllers
             try
             {
                 var house = houseModel.ToDomainModel();
-                _houseService.Add(house);
-                var newHouseModel = house.ToApiModel();
+                var newHouse = _houseService.Add(house);
+                var newHouseModel = newHouse.ToApiModel();
                 return Ok(newHouseModel);
             }
             catch (System.Exception ex)
@@ -75,11 +73,14 @@ namespace FosterCareAPI2.Controllers
 
         // PUT api/House/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] House house)
+        public IActionResult Put(int id, [FromBody] HouseModel houseModel)
         {
             try
             {
-                return Ok(_houseService.Update(house).ToApiModel());
+                var house = houseModel.ToDomainModel();
+                var updatedHouse =_houseService.Update(house);
+                var updatedHouseModel = updatedHouse.ToApiModel();
+                return Ok(updatedHouseModel);
             }
             catch (Exception ex)
             {

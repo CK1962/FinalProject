@@ -2,6 +2,7 @@
 <table class="table">
   <thead>
     <tr>
+      <!-- <th scope="col"></th> -->
       <th scope="col">Name</th>
       <th scope="col">Birthdate</th>
       <th scope="col">Move In Date</th>
@@ -13,6 +14,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let child of childList">
+      <!-- <td> -->
+      <!-- <img src="https://i.pravatar.cc/50" /> -->
+      <!-- <img src="https://placeimg.com/50/50/people" /> -->
+      <!-- </td> -->
       <td>
         <label *ngIf="isEditingChildId !== child.id">{{ child.name }}</label>
         <input *ngIf="isEditingChildId === child.id" type="text" class="form-control" [(ngModel)]="child.name">
@@ -26,9 +31,9 @@
         <input *ngIf="isEditingChildId === child.id" type="date" class="form-control" [(ngModel)]="child.moveInDate">
       </td>
       <td>
-        <label *ngIf="isEditingChildId !== child.id">{{ child.house }}</label>
-        <select *ngIf="isEditingChildId === child.id" class="form-control" [(ngModel)]="child.house">
-          <option [value]="houseName" *ngFor="let houseName of houseList">{{ houseName }}</option>
+        <label *ngIf="isEditingChildId !== child.id">{{ child.houseName }}</label>
+        <select *ngIf="isEditingChildId === child.id" class="form-control" [(ngModel)]="child.houseId">
+          <option [value]="house.houseId" *ngFor="let house of houseList">{{ house.houseName }}</option>
         </select>
       <td>
         <div *ngIf="isEditingChildId !== child.id">

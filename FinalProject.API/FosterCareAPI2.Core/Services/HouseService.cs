@@ -41,7 +41,11 @@ namespace FosterCareAPI2.Core.Services
 
         public House Update(House updatedHouse)
         {
-            return _houseRepository.Update(updatedHouse);
+            var originalHouse = Get(updatedHouse.Id);
+            originalHouse.Name = updatedHouse.Name;
+            originalHouse.City = updatedHouse.City;
+            _houseRepository.Update(originalHouse);
+            return originalHouse;
         }
     }
 }

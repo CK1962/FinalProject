@@ -1,37 +1,56 @@
 import { Injectable } from '@angular/core';
 import { IChild } from '../interfaces/ichild';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChildService {
   childList: IChild[] = [];
-  constructor() {
-    const child1: IChild = {
-      id: 1,
-      name: 'Ashton',
-      dob: '01/01/2010',
-      moveInDate: '10/10/2010',
-      house: 'Keslin'
-    };
 
-    this.add(child1);
+  constructor(private http: HttpClient) {
+    this.load();
+  }
+
+  private isLoaded: boolean = false;
+  private async load() {
+    const url: string = "https://localhost:44331/api/Child";
+    this.http.get<IChild[]>(url).subscribe(data => {
+      this.childList = data as IChild[];
+      this.isLoaded = true;
+    });
   }
 
   delete(childId: number) {
-    const index = this.childList.findIndex(childItem => childItem.id === childId);
-    this.childList.splice(index, 1);
+    // delete API
+    const url: string = "https://localhost:44331/api/Child/" + childId;
+    this.http.delete<IChild[]>(url).subscribe(data => {
+      this.load();
+    });
   }
 
   getAll(): IChild[] {
+    if (!this.isLoaded) {
+      this.load();
+    }
     return this.childList;
   }
 
   add(child: IChild) {
-    this.childList.push(child);
+    // add API
+    const url: string = "https://localhost:44331/api/Child/";
+    this.http.post<IChild[]>(url, child).subscribe(data => {
+      this.load();
+    });
   }
 
-  update(child: IChild): void {
-    var foundItem = this.childList.find(x => x.id === child.id);
+  update(childId: number): void {
+    const child = this.childList.find(x => x.id === childId);
+
+    // update API
+    const url: string = "https://localhost:44331/api/Child/" + childId;
+    this.http.put<IChild[]>(url, child).subscribe(data => {
+      this.load();
+    });
   }
 }

@@ -10,7 +10,6 @@ import { IChild } from '../interfaces/ichild';
   styleUrls: ['./children.component.scss']
 })
 export class ChildrenComponent implements OnInit {
-  childId: number = 1;
   isEditingChildId: number = 0;
 
   constructor(
@@ -19,9 +18,8 @@ export class ChildrenComponent implements OnInit {
 
   ngOnInit() { }
 
-  get houseList(): string[] {
-    // console.log(this.HouseService.houseList.map((el) => { return el.name; }));
-    return this.HouseService.houseList.map((el) => { return el.name; });
+  get houseList(): any[] {
+    return this.HouseService.houseList.map((el) => { return { houseId: el.id, houseName: el.name } });
   }
 
   get childList(): IChild[] {
@@ -41,18 +39,20 @@ export class ChildrenComponent implements OnInit {
   }
 
   saveEditChild(): void {
+    this.ChildService.update(this.isEditingChildId)
     this.isEditingChildId = 0;
+
+    this.HouseService.load();
   }
 
   addChild(): void {
-    this.childId++;
     this.ChildService.add({
-      id: this.childId,
+      id: 0,
       name: '',
       dob: '',
       moveInDate: '',
-      house: ''
+      houseId: null,
+      houseName: null
     });
   }
 }
-

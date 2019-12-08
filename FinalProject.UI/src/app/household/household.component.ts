@@ -9,13 +9,14 @@ import { IHouse } from '../interfaces/ihouse';
   styleUrls: ['./household.component.scss']
 })
 export class HouseholdComponent implements OnInit {
-
-  houseId: number = 1;
   isEditingHouseId: number = 0;
-  constructor(private HouseService: HouseService) {
-  }
 
-  ngOnInit() {
+  constructor(private HouseService: HouseService) { }
+
+  ngOnInit() { }
+
+  refreshHouses(): void {
+    this.HouseService.load();
   }
 
   get houseList(): IHouse[] {
@@ -35,17 +36,16 @@ export class HouseholdComponent implements OnInit {
   }
 
   saveEditHouse(): void {
+    this.HouseService.update(this.isEditingHouseId)
     this.isEditingHouseId = 0;
   }
 
   addHouse(): void {
-    this.houseId++;
     this.HouseService.add({
-      id: this.houseId,
+      id: 0,
       name: '',
       city: '',
       children: ''
     });
   }
-
 }

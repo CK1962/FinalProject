@@ -3,5 +3,6 @@ export interface IChild {
     name: string;
     dob: string;
     moveInDate: string;
-    house: string;
+    houseId: number;
+    houseName: string;
 }

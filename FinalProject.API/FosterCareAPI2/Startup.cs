@@ -56,6 +56,8 @@ namespace FosterCareAPI2
                 app.UseHsts();
             }
 
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
             app.UseHttpsRedirection();
             app.UseMvc(routes =>
             {

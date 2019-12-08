@@ -7,7 +7,6 @@ using System.Linq;
 
 namespace FosterCareAPI2.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class ChildController : ControllerBase
@@ -60,11 +59,11 @@ namespace FosterCareAPI2.Controllers
             try
             {
                 var child = childModel.ToDomainModel();
-                _childService.Add(child);
-                var newChildModel = child.ToApiModel();
+                var newChild = _childService.Add(child);
+                var newChildModel = newChild.ToApiModel();
                 return Ok(newChildModel);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 ModelState.AddModelError("AddChild", ex.Message);
                 return BadRequest(ModelState);
@@ -73,11 +72,16 @@ namespace FosterCareAPI2.Controllers
 
         // PUT api/child/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Child child)
+        public IActionResult Put(int id, [FromBody] ChildModel childModel)
         {
             try
             {
-                return Ok(_childService.Update(child).ToApiModel());
+                //return Ok(_childService.Update(child).ToApiModel());
+
+                var child = childModel.ToDomainModel();
+                var updatedChild = _childService.Update(child);
+                var updatedChildModel = updatedChild.ToApiModel();
+                return Ok(updatedChildModel);
             }
             catch (Exception ex)
             {
